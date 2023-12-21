@@ -29,13 +29,13 @@ class Table(QWidget):
         self.table_widget.setRowCount(12)
         self.table_widget.setColumnCount(14)
 
-        # Устанавливаем заголовки столбцов с использованием римских цифр для периодов
+      
         periods = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"]
         self.table_widget.setHorizontalHeaderLabels(periods)
         self.table_widget.setVerticalHeaderLabels(
             ["1", "2", "3", "4.1", "4.2", "5.1", "5.2", "6.1", "6.2", "7", "Лантаноиды", "Актиноиды"])
 
-        # Загружаем данные из файла
+       
         with open('periodic_table.csv', newline='', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile)
             for row in reader:
@@ -50,13 +50,13 @@ class Table(QWidget):
                     item.setData(Qt.ItemDataRole.ToolTipRole, f"Полное название: {full_name}, Масса: {mass}")
                     self.table_widget.setItem(int(period) - 1, int(group) - 1, item)
 
-        # Создаем вертикальный layout и добавляем в него QTableWidget
+        
         layout = QVBoxLayout(self)
         layout.addWidget(self.table_widget)
 
         self.setLayout(layout)
 
-        # Подключаем сигнал itemClicked к слоту showElementDetails
+        
         self.table_widget.itemClicked.connect(self.showElementDetails)
 
     def showElementDetails(self, item):
